@@ -26,8 +26,8 @@ def randomPassword():
     salt = ''.join(sa)
     return salt
 
-# 代理服务器响应超过10s就换下一个
-socket.setdefaulttimeout(10)
+# 代理服务器响应超过5s就换下一个
+socket.setdefaulttimeout(5)
 
 totalCount = 0
 successCount = 0
@@ -40,6 +40,7 @@ while True:
     ip_list = re.findall("(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*?(\d{2,6})", response.text, re.S)
     for ip in ip_list:
         totalCount += 1
+        print("第%d次攻击！"%totalCount)
         data = {'zh': str(randomQQ()), 'mima': str(randomPassword()), 'daqu': '不删档测试区', 'xiaoqu': '明珠港', 'dengji': '1'}
         print('账号:' + data['zh'])
         print('密码:' + data['mima'])
